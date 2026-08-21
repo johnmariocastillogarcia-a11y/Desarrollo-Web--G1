@@ -1,0 +1,111 @@
+JOHN MARIO CASTILLO GARCIA
+Guía de Etiquetas HTML
+Referencia completa con 98 etiquetas HTML5 organizadas por categoría, su función y un ejemplo de uso.
+Etiqueta	Para qué sirve	Ejemplo
+Estructura del documento
+<!DOCTYPE>	Declara el tipo y versión de HTML del documento.	<!DOCTYPE html>
+<html>	Elemento raíz que envuelve todo el documento HTML.	<html lang="es">...</html>
+<head>	Contiene metadatos: título, enlaces, scripts, estilos.	<head><title>Mi página</title></head>
+<title>	Define el título mostrado en la pestaña del navegador.	<title>Inicio</title>
+<meta>	Define metadatos como codificación, autor o descripción.	<meta charset="UTF-8">
+<link>	Enlaza recursos externos, típicamente hojas de estilo.	<link rel="stylesheet" href="estilos.css">
+<style>	Define estilos CSS internos dentro del documento.	<style>p{color:red;}</style>
+<script>	Inserta o enlaza código JavaScript.	<script>alert('Hola');</script>
+<body>	Contiene todo el contenido visible de la página.	<body><p>Hola mundo</p></body>
+<base>	Define la URL base para todos los enlaces relativos.	<base href="https://ejemplo.com/">
+Encabezados y texto
+<h1>-<h6>	Definen encabezados de nivel 1 (mayor) a 6 (menor).	<h1>Título principal</h1>
+<p>	Define un párrafo de texto.	<p>Este es un párrafo.</p>
+<br>	Inserta un salto de línea.	Línea 1<br>Línea 2
+<hr>	Inserta una línea horizontal divisoria.	<hr>
+<span>	Contenedor en línea sin significado semántico propio.	<span style="color:blue">texto</span>
+<div>	Contenedor de bloque genérico para agrupar contenido.	<div class="caja">Contenido</div>
+<pre>	Muestra texto preformateado respetando espacios y saltos.	<pre>  código   alineado</pre>
+<blockquote>	Define una cita larga o en bloque.	<blockquote>Cita textual.</blockquote>
+<q>	Define una cita corta en línea.	Dijo <q>hola</q> al entrar.
+<abbr>	Marca una abreviatura o acrónimo con su significado.	<abbr title="HyperText Markup Language">HTML</abbr>
+<address>	Define información de contacto del autor.	<address>contacto@ejemplo.com</address>
+<cite>	Referencia el título de una obra creativa.	<cite>Cien años de soledad</cite>
+<code>	Muestra un fragmento de código.	<code>let x = 5;</code>
+<kbd>	Representa una entrada de teclado del usuario.	Presiona <kbd>Ctrl</kbd>+<kbd>C</kbd>
+<samp>	Muestra la salida de un programa o script.	<samp>Error 404</samp>
+<var>	Representa una variable matemática o de programación.	<var>x</var> = 10
+<time>	Representa una fecha u hora legible por máquinas.	<time datetime="2026-08-20">20 de agosto</time>
+<mark>	Resalta texto relevante o marcado.	<mark>texto resaltado</mark>
+<small>	Reduce el tamaño del texto, útil para letra pequeña.	<small>Términos y condiciones</small>
+<sub>	Muestra texto en subíndice.	H<sub>2</sub>O
+<sup>	Muestra texto en superíndice.	x<sup>2</sup>
+<del>	Indica texto eliminado o tachado.	<del>precio anterior</del>
+<ins>	Indica texto insertado o añadido.	<ins>precio nuevo</ins>
+<strong>	Indica texto con importancia fuerte (negrita semántica).	<strong>Importante</strong>
+<em>	Indica énfasis en el texto (cursiva semántica).	<em>Atención</em>
+<b>	Aplica negrita sin implicar importancia semántica.	<b>texto en negrita</b>
+<i>	Aplica cursiva, usada para términos técnicos o pensamientos.	<i>Homo sapiens</i>
+<u>	Subraya el texto.	<u>texto subrayado</u>
+<wbr>	Sugiere un punto opcional de salto de línea.	super<wbr>califragilístico
+Listas
+<ul>	Define una lista no ordenada (con viñetas).	<ul><li>Manzana</li></ul>
+<ol>	Define una lista ordenada (numerada).	<ol><li>Paso uno</li></ol>
+<li>	Define un elemento dentro de una lista.	<li>Elemento de lista</li>
+<dl>	Define una lista de descripción (términos y definiciones).	<dl><dt>HTML</dt><dd>Lenguaje de marcado</dd></dl>
+<dt>	Define el término dentro de una lista de descripción.	<dt>CSS</dt>
+<dd>	Define la descripción de un término.	<dd>Hojas de estilo</dd>
+Enlaces y multimedia
+<a>	Crea un hipervínculo a otra página o recurso.	<a href="https://ejemplo.com">Visitar</a>
+<img>	Inserta una imagen en la página.	<img src="foto.jpg" alt="Foto">
+<audio>	Inserta contenido de audio reproducible.	<audio src="cancion.mp3" controls></audio>
+<video>	Inserta contenido de video reproducible.	<video src="video.mp4" controls></video>
+<source>	Especifica múltiples fuentes para audio, video o picture.	<source src="video.webm" type="video/webm">
+<track>	Añade subtítulos o pistas de texto a audio/video.	<track src="subs.vtt" kind="subtitles">
+<iframe>	Incrusta otra página web dentro de la actual.	<iframe src="https://ejemplo.com"></iframe>
+<embed>	Incrusta contenido externo (plugin o recurso).	<embed src="archivo.swf">
+<object>	Incrusta un recurso externo genérico (PDF, video, etc.).	<object data="doc.pdf"></object>
+<picture>	Contenedor para ofrecer varias versiones de una imagen.	<picture><source srcset="g.jpg"><img src="p.jpg"></picture>
+<map>	Define un mapa de imagen con áreas clicables.	<map name="mapa"><area href="#" shape="rect"></map>
+<area>	Define una zona clicable dentro de un mapa de imagen.	<area shape="circle" coords="10,10,5" href="#">
+Tablas
+<table>	Define una tabla de datos.	<table><tr><td>Dato</td></tr></table>
+<tr>	Define una fila dentro de una tabla.	<tr><td>Celda</td></tr>
+<td>	Define una celda de datos en una tabla.	<td>Contenido</td>
+<th>	Define una celda de encabezado en una tabla.	<th>Nombre</th>
+<thead>	Agrupa las filas de encabezado de una tabla.	<thead><tr><th>Col 1</th></tr></thead>
+<tbody>	Agrupa el cuerpo principal de filas de la tabla.	<tbody><tr><td>1</td></tr></tbody>
+<tfoot>	Agrupa las filas de pie de una tabla.	<tfoot><tr><td>Total</td></tr></tfoot>
+<caption>	Define un título o leyenda para la tabla.	<caption>Ventas 2026</caption>
+<colgroup>	Agrupa columnas de una tabla para aplicar estilos.	<colgroup><col span="2"></colgroup>
+<col>	Define propiedades para una o varias columnas.	<col style="background-color:#eee">
+Formularios
+<form>	Define un formulario para recopilar datos del usuario.	<form action="/enviar" method="post">...</form>
+<input>	Campo de entrada de datos (texto, número, checkbox, etc.).	<input type="text" name="nombre">
+<textarea>	Campo de texto multilínea.	<textarea rows="4">Escribe aquí...</textarea>
+<button>	Define un botón interactivo.	<button type="submit">Enviar</button>
+<select>	Crea una lista desplegable de opciones.	<select><option>Uno</option></select>
+<option>	Define una opción dentro de un select o datalist.	<option value="1">Opción 1</option>
+<optgroup>	Agrupa opciones relacionadas dentro de un select.	<optgroup label="Frutas"><option>Pera</option></optgroup>
+<label>	Define una etiqueta descriptiva para un control de formulario.	<label for="correo">Correo:</label>
+<fieldset>	Agrupa controles relacionados dentro de un formulario.	<fieldset><legend>Datos</legend></fieldset>
+<legend>	Define el título de un fieldset.	<legend>Información personal</legend>
+<datalist>	Ofrece una lista de opciones sugeridas para un input.	<datalist id="lista"><option value="A"></datalist>
+<output>	Muestra el resultado de un cálculo o acción.	<output name="resultado">42</output>
+<progress>	Muestra el progreso de una tarea.	<progress value="70" max="100"></progress>
+<meter>	Muestra una medida escalar dentro de un rango conocido.	<meter value="0.6" min="0" max="1"></meter>
+Semántica y estructura de página
+<header>	Define la cabecera de una página o sección.	<header><h1>Mi Sitio</h1></header>
+<footer>	Define el pie de página de una página o sección.	<footer>© 2026 Mi Sitio</footer>
+<nav>	Define un bloque de enlaces de navegación.	<nav><a href="#">Inicio</a></nav>
+<main>	Define el contenido principal único de la página.	<main><p>Contenido central</p></main>
+<section>	Define una sección temática de contenido.	<section><h2>Servicios</h2></section>
+<article>	Define contenido independiente y autocontenible.	<article><h2>Noticia</h2><p>...</p></article>
+<aside>	Define contenido relacionado pero secundario (barra lateral).	<aside>Enlaces relacionados</aside>
+<details>	Crea un widget desplegable de contenido oculto.	<details><summary>Más info</summary>Texto</details>
+<summary>	Define el título visible de un elemento details.	<summary>Ver más</summary>
+<dialog>	Define un cuadro de diálogo o ventana modal.	<dialog open>Mensaje importante</dialog>
+<figure>	Agrupa contenido ilustrativo (imagen, gráfico) con su pie.	<figure><img src="g.jpg"><figcaption>Gráfico</figcaption></figure>
+<figcaption>	Define el pie o leyenda de un figure.	<figcaption>Fig. 1: Ventas</figcaption>
+<template>	Define contenido HTML reutilizable no renderizado directamente.	<template id="t"><p>Plantilla</p></template>
+<slot>	Marca un espacio para contenido en Web Components.	<slot name="titulo"></slot>
+Gráficos e interactividad
+<canvas>	Área para dibujar gráficos mediante JavaScript.	<canvas id="lienzo" width="200" height="100"></canvas>
+<svg>	Define gráficos vectoriales escalables.	<svg><circle cx="50" cy="50" r="40"/></svg>
+<noscript>	Muestra contenido alternativo si JavaScript está desactivado.	<noscript>Active JavaScript</noscript>
+
