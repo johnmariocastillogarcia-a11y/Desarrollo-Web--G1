@@ -1,0 +1,377 @@
+/* ==========================================================================
+   STYLES.CSS — Estilos del sitio Instituto La Salle
+   Estructura del archivo (de arriba hacia abajo, en el mismo orden que
+   aparece la página al hacer scroll):
+     1. Variables globales y estilos base (reset, tipografías)
+     2. Barra de navegación (NAV)
+     3. Sección principal / portada (HERO)
+     4. Franja del lema institucional (MOTTO)
+     5. Encabezados reutilizables de cada sección
+     6. Tarjetas de "pilares" institucionales
+     7. Sección de acceso / login
+     8. Panel / dashboard de demostración (notas, matrículas, docentes...)
+     9. Línea decorativa tipo "montaña" (divisor)
+     10. Pie de página (FOOTER)
+     11. Estilos responsivos (RESPONSIVE) para pantallas pequeñas
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIABLES GLOBALES Y BASE
+   Las variables (--nombre) son "colores con nombre" reutilizables en todo
+   el archivo. Cambiarlas aquí actualiza el color en todo el sitio.
+   ========================================================================== */
+:root{
+    --azul-cielo:#2E3192;      /* azul institucional principal */
+    --azul-cielo-2:#243080;    /* azul más oscuro, para hover/footer */
+    --verde-sierra:#1FA774;    /* verde institucional (naturaleza/Sierra Nevada) */
+    --verde-sierra-2:#158a5f;  /* verde oscuro, para textos y estados "superior" */
+    --dorado-sol:#F4C430;      /* dorado, color de acento (sol) */
+    --naranja-lema:#E8823C;    /* naranja usado en el lema y detalles de hover */
+    --tinta:#242320;           /* color de texto principal (casi negro) */
+    --tinta-suave:#5b584f;     /* color de texto secundario (gris cálido) */
+    --crema:#FAF8F3;           /* color de fondo general de la página */
+    --crema-2:#F1ECDF;         /* fondo alterno, un poco más oscuro que crema */
+    --linea:#e4ddc9;           /* color de bordes y separadores sutiles */
+    --blanco:#ffffff;
+    --rojo-alerta:#c0433a;     /* rojo para estados de alerta / notas bajas */
+    --radio:14px;              /* radio de borde estándar para tarjetas */
+    --sombra: 0 10px 30px -12px rgba(36,35,32,.25); /* sombra estándar de tarjetas */
+  }
+
+  /* Reset básico: todos los elementos usan box-sizing:border-box,
+     así el padding y el borde no aumentan el ancho/alto declarado */
+  *{box-sizing:border-box;}
+
+  /* Hace que los enlaces internos (ej: <a href="#seccion">) se desplacen suavemente */
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family:'Inter',sans-serif;   /* tipografía base para texto normal */
+    color:var(--tinta);
+    background:var(--crema);
+    -webkit-font-smoothing:antialiased; /* mejora el renderizado de fuentes en navegadores webkit */
+  }
+
+  /* Títulos y elementos con clase .serif usan la tipografía elegante Fraunces */
+  h1,h2,h3,.serif{font-family:'Fraunces',serif;}
+  /* Elementos con clase .mono usan una fuente monoespaciada (para códigos, notas, cifras) */
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  a{color:inherit;} /* los enlaces heredan el color del texto en vez del azul por defecto */
+  img,svg{display:block;max-width:100%;} /* evita espacios extra debajo de imágenes y las hace responsivas */
+  button{font-family:inherit;cursor:pointer;}
+
+  /* Contenedor centrado reutilizable en todas las secciones (ancho máximo + padding lateral) */
+  .container{max-width:1180px;margin:0 auto;padding:0 28px;}
+
+  /* Estilo de foco visible al navegar con teclado (accesibilidad) */
+  :focus-visible{outline:3px solid var(--naranja-lema); outline-offset:2px;}
+
+  /* ==========================================================================
+     2. NAV — Barra de navegación superior
+     Se mantiene fija arriba (sticky) mientras el usuario hace scroll.
+     ========================================================================== */
+  header.nav{
+    position:sticky; top:0; z-index:100; /* siempre visible, por encima del resto del contenido */
+    background:rgba(250,248,243,.92);    /* fondo semitransparente para efecto "vidrio esmerilado" */
+    backdrop-filter:blur(8px);           /* desenfoca lo que hay detrás de la barra */
+    border-bottom:1px solid var(--linea);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between; /* logo a la izq., menú a la der. */
+    padding:14px 28px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none;} /* logo + nombre del colegio */
+  .brand-crest{width:44px;height:44px;flex-shrink:0;} /* escudo/logo en SVG */
+  .brand-text{line-height:1.15;}
+  .brand-text .name{font-family:'Fraunces',serif; font-weight:700; font-size:16.5px; color:var(--azul-cielo-2);}
+  .brand-text .place{font-size:11.5px; letter-spacing:.06em; color:var(--tinta-suave); text-transform:uppercase;}
+
+  nav.links{display:flex; gap:30px; align-items:center;} /* lista de enlaces del menú principal */
+  nav.links a{font-size:14.5px; font-weight:600; text-decoration:none; color:var(--tinta); position:relative; padding:4px 0;}
+  /* Efecto de "subrayado animado" al pasar el mouse sobre un enlace del menú */
+  nav.links a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:2px;background:var(--naranja-lema);transition:width .25s;}
+  nav.links a:hover::after{width:100%;}
+
+  /* Estilos base de botones (.btn) y sus variantes de color */
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 22px; border-radius:999px; border:none; /* forma de "píldora" */
+    font-weight:700; font-size:14.5px; text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px);} /* pequeño "levantamiento" al pasar el mouse */
+  .btn-primary{background:var(--azul-cielo); color:#fff; box-shadow:0 8px 20px -8px rgba(46,49,146,.6);}
+  .btn-primary:hover{background:var(--azul-cielo-2);}
+  .btn-ghost{background:transparent; color:var(--azul-cielo); border:1.5px solid var(--azul-cielo);} /* botón "contorno" */
+  .btn-sun{background:var(--dorado-sol); color:#2b2400;} /* botón dorado de acento */
+  .menu-toggle{display:none; background:none; border:none; font-size:26px; color:var(--azul-cielo-2);} /* botón hamburguesa (solo en móvil) */
+
+  /* ==========================================================================
+     3. HERO — Sección principal / portada
+     Fondo con degradado azul-verde, título grande, sol animado y tarjetas
+     con estadísticas flotantes.
+     ========================================================================== */
+  .hero{
+    position:relative; overflow:hidden;
+    background:linear-gradient(180deg, var(--azul-cielo) 0%, #2c6f8f 46%, var(--verde-sierra) 100%);
+    color:#fff; padding:88px 0 0;
+  }
+  .hero-inner{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:50px; align-items:center; /* texto a la izq., sol a la der. */
+    max-width:1180px; margin:0 auto; padding:0 28px 70px;
+  }
+  /* Etiqueta pequeña con punto de color, encima del título (ej: "Institución educativa") */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(255,255,255,.14); border:1px solid rgba(255,255,255,.28);
+    padding:7px 16px; border-radius:999px; font-size:12.5px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; margin-bottom:22px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--dorado-sol);}
+
+  .hero h1{
+    font-size:clamp(34px,4.6vw,54px); line-height:1.06; font-weight:700; margin:0 0 20px;
+    letter-spacing:-.01em;
+  }
+  .hero h1 em{font-style:italic; color:var(--dorado-sol);} /* resalta una palabra del título en dorado */
+  .hero p.lead{font-size:17.5px; line-height:1.65; color:rgba(255,255,255,.86); max-width:520px; margin:0 0 32px;}
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;} /* fila de botones de llamada a la acción */
+
+  .sun-wrap{position:relative; display:flex; justify-content:center;}
+  /* Círculo tipo "sol" con degradado radial y sombra difusa, con animación flotante */
+  .sun{
+    width:220px; height:220px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff6cf, var(--dorado-sol) 55%, #d9a300 100%);
+    box-shadow:0 0 0 14px rgba(244,196,48,.12), 0 0 80px 10px rgba(244,196,48,.35);
+    position:relative; z-index:2;
+    animation:float 6s ease-in-out infinite;
+  }
+  /* Animación: el sol sube y baja suavemente de forma indefinida */
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+  /* Tarjetas blancas flotantes con una cifra destacada (ej: "+30 años") */
+  .stat-card{
+    position:absolute; background:#fff; color:var(--tinta); border-radius:12px;
+    padding:14px 18px; box-shadow:var(--sombra); z-index:3; min-width:150px;
+  }
+  .stat-card .num{font-family:'Fraunces',serif; font-weight:800; font-size:26px; color:var(--azul-cielo);}
+  .stat-card .label{font-size:11.5px; color:var(--tinta-suave); text-transform:uppercase; letter-spacing:.04em;}
+  .stat-1{top:-6px; left:-30px;}   /* posición de la primera tarjeta flotante */
+  .stat-2{bottom:-14px; right:-18px;} /* posición de la segunda tarjeta flotante */
+
+  .ridge{display:block; width:100%; height:64px;} /* silueta SVG tipo "cordillera" al final del hero */
+
+  /* ==========================================================================
+     4. MOTTO — Franja del lema institucional ("Dios, Ciencia y Virtud", etc.)
+     ========================================================================== */
+  .motto{
+    background:var(--crema); border-top:1px solid var(--linea); border-bottom:1px solid var(--linea);
+    padding:20px 0; text-align:center;
+  }
+  .motto p{
+    margin:0; font-weight:800; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--naranja-lema); font-size:15px;
+  }
+  .motto span{color:var(--tinta-suave); font-weight:600; letter-spacing:.05em; margin:0 14px; font-size:13px;} /* separador entre palabras del lema */
+
+  /* ==========================================================================
+     5. SECTION HEADERS — Encabezados reutilizables para cada sección
+     (etiqueta pequeña + título + descripción). Se usa en varias partes
+     de la página para mantener consistencia visual.
+     ========================================================================== */
+  .section{padding:88px 0;} /* espaciado vertical estándar de cada sección */
+  .section-head{max-width:640px; margin:0 0 48px;}
+  .section-head .tag{
+    display:inline-block; font-size:12.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;
+    color:var(--verde-sierra-2); margin-bottom:12px;
+  }
+  .section-head h2{font-size:clamp(26px,3vw,36px); margin:0 0 14px; line-height:1.15;}
+  .section-head p{color:var(--tinta-suave); font-size:16px; line-height:1.6; margin:0;}
+  .section-alt{background:var(--crema-2);} /* fondo alterno para diferenciar secciones consecutivas */
+
+  /* ==========================================================================
+     6. PILARES — Tarjetas de los pilares institucionales (ej: Académico,
+     Formación en valores, Bienestar...)
+     ========================================================================== */
+  .pilares{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;} /* 3 columnas iguales */
+  .pilar{
+    background:#fff; border-radius:var(--radio); padding:30px 26px; border:1px solid var(--linea);
+    box-shadow:var(--sombra); transition:transform .2s ease;
+  }
+  .pilar:hover{transform:translateY(-6px);} /* la tarjeta "se eleva" al pasar el mouse */
+  .pilar .icon{
+    width:52px;height:52px;border-radius:12px; display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+  }
+  .pilar h3{font-size:19px; margin:0 0 10px;}
+  .pilar p{color:var(--tinta-suave); font-size:14.5px; line-height:1.6; margin:0 0 14px;}
+  .pilar ul{margin:0; padding-left:18px; color:var(--tinta-suave); font-size:14px; line-height:1.9;}
+
+  /* ==========================================================================
+     7. ACCESO / LOGIN — Sección con fondo oscuro donde el usuario
+     elige su rol (estudiante/docente/admin) e inicia sesión
+     ========================================================================== */
+  #acceso{
+    background:var(--tinta); color:#fff; position:relative; overflow:hidden;
+  }
+  /* Capa decorativa con dos manchas de luz (dorada y verde) detrás del contenido */
+  #acceso::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 85% 20%, rgba(244,196,48,.12), transparent 45%),
+               radial-gradient(circle at 10% 80%, rgba(31,167,116,.16), transparent 45%);
+  }
+  .acceso-grid{position:relative; display:grid; grid-template-columns:1fr 1.05fr; gap:60px; align-items:center;} /* texto a la izq., formulario a la der. */
+  .acceso-copy .section-head h2, .acceso-copy .section-head p{color:#fff;} /* texto blanco sobre fondo oscuro */
+  .acceso-copy .tag{color:var(--dorado-sol);}
+  .acceso-copy p{color:rgba(255,255,255,.72);}
+  .roles-mini{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;} /* chips informativos de los 3 roles */
+  .role-chip{
+    display:flex; align-items:center; gap:10px; background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.15); padding:10px 16px; border-radius:10px; font-size:13.5px; font-weight:600;
+  }
+
+  /* Tarjeta blanca del formulario de login */
+  .login-card{
+    background:#fff; color:var(--tinta); border-radius:18px; padding:34px; box-shadow:0 30px 60px -20px rgba(0,0,0,.5);
+  }
+  /* Pestañas para elegir el rol: Estudiante / Docente / Admin */
+  .tabs{display:flex; background:var(--crema-2); border-radius:999px; padding:4px; margin-bottom:26px;}
+  .tab{
+    flex:1; text-align:center; padding:10px 8px; border-radius:999px; border:none; background:transparent;
+    font-weight:700; font-size:13.5px; color:var(--tinta-suave); transition:.2s;
+  }
+  .tab.active{background:var(--azul-cielo); color:#fff; box-shadow:0 6px 14px -6px rgba(46,49,146,.5);} /* pestaña seleccionada (controlado por JS) */
+
+  .field{margin-bottom:16px;}
+  .field label{display:block; font-size:12.5px; font-weight:700; text-transform:uppercase; letter-spacing:.04em; color:var(--tinta-suave); margin-bottom:6px;}
+  .field input{
+    width:100%; padding:12px 14px; border-radius:9px; border:1.5px solid var(--linea); font-size:14.5px;
+    font-family:inherit; background:var(--crema);
+  }
+  .field input:focus{border-color:var(--azul-cielo); background:#fff;}
+  .login-row{display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--tinta-suave); margin-bottom:22px;} /* fila "recordarme / olvidé mi contraseña" */
+  .login-row a{color:var(--azul-cielo); font-weight:600; text-decoration:none;}
+  .btn-full{width:100%; justify-content:center; padding:14px;} /* botón de ingresar, ancho completo */
+  .login-note{font-size:12px; color:var(--tinta-suave); text-align:center; margin-top:16px;}
+
+  /* ==========================================================================
+     8. PANEL / DASHBOARD DEMO — Simulación del panel interno tras "iniciar
+     sesión": menú lateral + notas, matrículas, docentes, finanzas, etc.
+     ========================================================================== */
+  .panel-wrap{
+    background:#fff; border-radius:20px; border:1px solid var(--linea); box-shadow:var(--sombra);
+    overflow:hidden;
+  }
+  /* Barra superior del panel, con el color/nombre del usuario que "inició sesión" */
+  .panel-top{
+    display:flex; align-items:center; justify-content:space-between; padding:16px 22px;
+    background:var(--azul-cielo); color:#fff;
+  }
+  .panel-top .who{display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;}
+  .avatar{width:34px;height:34px;border-radius:50%; background:var(--dorado-sol); color:#2b2400; display:flex;align-items:center;justify-content:center; font-weight:800; font-family:'Fraunces',serif;}
+
+  /* Cuerpo del panel: menú lateral (220px fijos) + contenido principal (resto del espacio) */
+  .panel-body{display:grid; grid-template-columns:220px 1fr; min-height:520px;}
+  .sidebar{background:var(--crema-2); border-right:1px solid var(--linea); padding:18px 12px;}
+  .side-btn{
+    display:flex; align-items:center; gap:10px; width:100%; text-align:left; padding:11px 14px;
+    border:none; background:transparent; border-radius:9px; font-weight:600; font-size:14px; color:var(--tinta-suave);
+    margin-bottom:4px;
+  }
+  .side-btn.active{background:#fff; color:var(--azul-cielo); box-shadow:0 3px 10px -4px rgba(0,0,0,.15);} /* botón del menú activo (controlado por JS) */
+  .side-btn:hover{background:rgba(255,255,255,.6);}
+
+  .main-panel{padding:26px 30px;}
+  /* Cada "vista" del panel (notas/matrículas/docentes...) está oculta por defecto;
+     el JS le agrega la clase .active a la vista que corresponde mostrar */
+  .panel-view{display:none;}
+  .panel-view.active{display:block; animation:fadein .25s ease;}
+  @keyframes fadein{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:translateY(0)}} /* aparición suave al cambiar de vista */
+  .panel-view h3{margin:0 0 4px; font-size:20px;}
+  .panel-view .sub{color:var(--tinta-suave); font-size:13.5px; margin:0 0 22px;}
+
+  /* Fila de indicadores clave (KPIs) en la parte superior de una vista, ej: "Promedio general" */
+  .kpi-row{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:28px;}
+  .kpi{background:var(--crema); border-radius:12px; padding:16px; border:1px solid var(--linea);}
+  .kpi .n{font-family:'Fraunces',serif; font-weight:800; font-size:24px; color:var(--azul-cielo);} /* número grande del KPI */
+  .kpi .l{font-size:12px; color:var(--tinta-suave); text-transform:uppercase; letter-spacing:.03em;} /* etiqueta del KPI */
+
+  /* Estilos generales de tablas (notas, matrículas, docentes) */
+  table{width:100%; border-collapse:collapse; font-size:14px;}
+  thead th{
+    text-align:left; font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--tinta-suave);
+    padding:10px 12px; border-bottom:2px solid var(--linea);
+  }
+  tbody td{padding:12px; border-bottom:1px solid var(--linea);}
+  tbody tr:hover{background:var(--crema);}
+
+  /* "Pill" o etiqueta redondeada de estado (Superior/Aceptable/Bajo, Confirmada/Pendiente) */
+  .pill{padding:4px 11px; border-radius:999px; font-size:12px; font-weight:700; display:inline-block;}
+  .pill-verde{background:#e2f6ec; color:var(--verde-sierra-2);}   /* estado positivo */
+  .pill-rojo{background:#fbe7e5; color:var(--rojo-alerta);}       /* estado negativo/alerta */
+  .pill-dorado{background:#fdf3d9; color:#946e00;}                /* estado intermedio/pendiente */
+
+  /* Barra de herramientas encima de las tablas (buscador + filtros por select) */
+  .toolbar{display:flex; gap:12px; margin-bottom:18px; flex-wrap:wrap;}
+  .toolbar input, .toolbar select{
+    padding:10px 14px; border-radius:8px; border:1.5px solid var(--linea); font-family:inherit; font-size:13.5px;
+  }
+
+  /* Input pequeño y centrado usado dentro de la tabla de notas (editable por el usuario) */
+  .grade-input{width:64px; padding:6px 8px; border-radius:6px; border:1.5px solid var(--linea); font-family:'JetBrains Mono',monospace; text-align:center;}
+
+  /* Tarjetas de resumen financiero (ej: estado de pensiones) */
+  .fin-cards{display:grid; grid-template-columns:repeat(2,1fr); gap:16px;}
+  .fin-card{border:1px solid var(--linea); border-radius:12px; padding:18px;}
+  .fin-card h4{margin:0 0 4px; font-size:15px;}
+  .fin-card .m{color:var(--tinta-suave); font-size:13px; margin:0 0 14px;}
+  .bar-bg{height:8px; border-radius:99px; background:var(--crema-2); overflow:hidden; margin-bottom:8px;} /* fondo de barra de progreso */
+  .bar-fill{height:100%; background:var(--verde-sierra);} /* relleno de la barra de progreso */
+
+  /* ==========================================================================
+     9. MOUNTAIN DIVIDER — Línea decorativa en zigzag (SVG) que separa
+     el panel del footer, simulando el perfil de la Sierra Nevada
+     ========================================================================== */
+  .divider{width:100%; height:46px; display:block;}
+
+  /* ==========================================================================
+     10. FOOTER — Pie de página con datos de contacto y enlaces rápidos
+     ========================================================================== */
+  footer{background:var(--azul-cielo-2); color:rgba(255,255,255,.85); padding:56px 0 26px;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:36px; margin-bottom:40px;} /* 4 columnas: marca + 3 listas de enlaces */
+  .foot-brand{display:flex; gap:12px; align-items:center; margin-bottom:14px;}
+  .foot-brand .name{font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:16px;}
+  footer h5{color:#fff; font-size:13px; text-transform:uppercase; letter-spacing:.06em; margin:0 0 16px;}
+  footer ul{list-style:none; margin:0; padding:0;}
+  footer li{margin-bottom:10px; font-size:14px;}
+  footer a{text-decoration:none; color:rgba(255,255,255,.78);}
+  footer a:hover{color:var(--dorado-sol);}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.15); padding-top:22px; text-align:center; font-size:12.5px; color:rgba(255,255,255,.6);} /* línea de copyright */
+
+  /* ==========================================================================
+     11. RESPONSIVE — Ajustes para pantallas pequeñas (tablets/celulares)
+     Se activan cuando el ancho de la ventana es de 920px o menos.
+     ========================================================================== */
+  @media (max-width:920px){
+    nav.links{display:none;}          /* se oculta el menú horizontal... */
+    .menu-toggle{display:block;}      /* ...y se muestra el botón hamburguesa */
+    .hero-inner{grid-template-columns:1fr;}   /* el hero pasa de 2 columnas a 1 (apiladas) */
+    .sun-wrap{order:-1;}                      /* el sol se muestra primero en móvil */
+    .acceso-grid{grid-template-columns:1fr;}  /* login pasa a una sola columna */
+    .pilares{grid-template-columns:1fr;}      /* pilares se apilan verticalmente */
+    .panel-body{grid-template-columns:1fr;}   /* el panel deja de tener sidebar fijo al lado */
+    .sidebar{display:flex; overflow-x:auto; gap:6px; border-right:none; border-bottom:1px solid var(--linea);} /* sidebar se vuelve una barra horizontal desplazable */
+    .kpi-row{grid-template-columns:repeat(2,1fr);} /* KPIs pasan de 4 a 2 columnas */
+    .foot-grid{grid-template-columns:1fr 1fr;}     /* footer pasa de 4 a 2 columnas */
+    .fin-cards{grid-template-columns:1fr;}         /* tarjetas financieras se apilan */
+  }
+
+  /* Si el usuario tiene activada la opción de "reducir movimiento" en su sistema
+     operativo (accesibilidad), desactivamos animaciones y el scroll suave */
+  @media (prefers-reduced-motion:reduce){
+    .sun{animation:none;}
+    html{scroll-behavior:auto;}
+  }

@@ -1,0 +1,365 @@
+<!--
+  INDEX.HTML — Página del Instituto La Salle (Ciénaga, Magdalena)
+  Este archivo solo contiene la ESTRUCTURA (HTML). El diseño visual vive en
+  css/styles.css y la interactividad (login, panel, tablas) vive en js/script.js.
+
+  Mapa de secciones de la página (en el orden en que aparecen):
+    1. header.nav       -> barra de navegación superior
+    2. section.hero      -> portada con título y sol animado
+    3. div.motto         -> franja del lema institucional
+    4. section#pilares   -> los 3 pilares de la plataforma
+    5. section#acceso    -> login por rol (estudiante/docente/admin)
+    6. section#panel     -> demo interactiva del panel interno
+    7. footer#contacto   -> pie de página con datos de contacto
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto La Salle · Ciénaga, Magdalena</title>
+
+  <!-- Fuentes de Google Fonts: Fraunces (títulos), Inter (texto), JetBrains Mono (cifras/códigos) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <!-- Hoja de estilos propia del proyecto (antes estaba dentro de un <style> aquí mismo) -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#" class="brand">
+      <svg class="brand-crest" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fff" stroke="#242320" stroke-width="2.5"/><path d="M2 50a48 48 0 0 1 96 0z" fill="url(#g1)"/><circle cx="60" cy="38" r="12" fill="#F4C430"/><path d="M2 62 L30 58 L45 42 L58 52 L70 40 L98 44" fill="none" stroke="#158a5f" stroke-width="3"/><path d="M2 62 L98 62 L98 98 A48 48 0 0 1 2 62Z" fill="#F4C430" opacity=".9"/><defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E3192"/><stop offset="1" stop-color="#1FA774"/></linearGradient></defs></svg>
+      <span class="brand-text">
+        <span class="name">Instituto La Salle</span><br>
+        <span class="place">Ciénaga · Magdalena</span>
+      </span>
+    </a>
+    <nav class="links">
+      <a href="#pilares">La Institución</a>
+      <a href="#acceso">Comunidad Educativa</a>
+      <a href="#panel">Plataforma</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <a href="#acceso" class="btn btn-primary">Ingresar</a>
+    <button class="menu-toggle" aria-label="Abrir menú">☰</button>
+  </div>
+</header>
+
+<!-- ============ HERO ============
+     Portada principal: título grande, texto introductorio, botones de
+     llamada a la acción y el "sol" animado con dos tarjetas de estadísticas.
+-->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="eyebrow"><span class="dot"></span> Básica Primaria y Secundaria · Ciénaga, Magdalena</div>
+      <h1>Educamos con <em>Dios, Ciencia<br> y Virtud</em></h1>
+      <p class="lead">La plataforma oficial del Instituto La Salle: un solo lugar para que docentes, estudiantes y familias gestionen notas, matrículas y pensiones, con la misma claridad con la que formamos a nuestros alumnos.</p>
+      <div class="hero-ctas">
+        <a href="#acceso" class="btn btn-sun">Ingresar a la plataforma</a>
+        <a href="#panel" class="btn btn-ghost" style="border-color:rgba(255,255,255,.6); color:#fff;">Ver módulos</a>
+      </div>
+    </div>
+    <div class="sun-wrap">
+      <div class="stat-card stat-1"><div class="num">1.240</div><div class="label">Estudiantes activos</div></div>
+      <div class="sun"></div>
+      <div class="stat-card stat-2"><div class="num">4,3</div><div class="label">Promedio institucional</div></div>
+    </div>
+  </div>
+  <svg class="ridge" viewBox="0 0 1200 70" preserveAspectRatio="none"><path d="M0,70 L0,45 L120,20 L260,50 L400,10 L560,38 L700,15 L860,44 L1000,18 L1200,40 L1200,70 Z" fill="#FAF8F3"/></svg>
+</section>
+
+<!-- ============ MOTTO ============ -->
+<div class="motto">
+  <p>Dios <span>·</span> Ciencia <span>·</span> Virtud</p>
+</div>
+
+<!-- ============ PILARES ============
+     3 tarjetas que resumen los módulos de la plataforma: Académico,
+     Financiero (matrículas/pensiones) y Comunidad educativa.
+-->
+<section class="section" id="pilares">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Qué reúne la plataforma</span>
+      <h2>Toda la vida académica del colegio, en tres frentes claros</h2>
+      <p>Cada símbolo de nuestro escudo representa un módulo real de la plataforma: la pluma y el tintero son la gestión académica, el libro es la formación, y el computador es la tecnología que hoy conecta a toda la comunidad.</p>
+    </div>
+    <div class="pilares">
+      <div class="pilar">
+        <div class="icon" style="background:#e9ecfb;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 20l4-1 10-10-3-3L5 16l-1 4z" stroke="#2E3192" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Gestión Académica</h3>
+        <p>Notas por periodo, promedios automáticos y boletines, para primaria y secundaria.</p>
+        <ul>
+          <li>Registro de notas por asignatura</li>
+          <li>Cálculo automático de promedios</li>
+          <li>Boletines e informes por periodo</li>
+          <li>Observador del estudiante</li>
+        </ul>
+      </div>
+      <div class="pilar">
+        <div class="icon" style="background:#e2f6ec;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="2" stroke="#158a5f" stroke-width="1.8"/><path d="M3 9h18M8 4v16" stroke="#158a5f" stroke-width="1.8"/></svg>
+        </div>
+        <h3>Gestión Financiera</h3>
+        <p>Matrículas y pensiones con estado de cuenta claro para cada acudiente.</p>
+        <ul>
+          <li>Matrícula en línea por grado</li>
+          <li>Estado de pensiones al día</li>
+          <li>Recordatorios de pago</li>
+          <li>Histórico de comprobantes</li>
+        </ul>
+      </div>
+      <div class="pilar">
+        <div class="icon" style="background:#fdf3d9;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="3.2" stroke="#946e00" stroke-width="1.8"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6" stroke="#946e00" stroke-width="1.8"/></svg>
+        </div>
+        <h3>Comunidad Educativa</h3>
+        <p>Un perfil por rol para cada docente, estudiante y acudiente de la institución.</p>
+        <ul>
+          <li>Directorio de docentes y cursos</li>
+          <li>Perfil de cada estudiante</li>
+          <li>Mensajería institucional</li>
+          <li>Calendario de actividades</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACCESO / LOGIN ============
+     Sección de inicio de sesión. Las 3 pestañas (.tab) permiten elegir el
+     rol; el JS (script.js, bloque 1) cambia el label/placeholder del campo
+     de identificación según el rol elegido en data-role="...".
+     El formulario no envía datos a ningún servidor (es una demo): al
+     enviarlo, el JS solo hace scroll hasta la sección #panel.
+-->
+<section class="section" id="acceso">
+  <div class="container acceso-grid">
+
+    <!-- Columna izquierda: texto explicativo + chips informativos de los 3 roles -->
+    <div class="acceso-copy">
+      <div class="section-head">
+        <span class="tag">Acceso a la plataforma</span>
+        <h2>Un solo ingreso, tres experiencias distintas</h2>
+        <p>El sistema reconoce el rol de cada usuario y muestra únicamente la información que le corresponde: notas y horario para el estudiante, planillas para el docente, y matrícula y pagos para el área administrativa.</p>
+      </div>
+      <div class="roles-mini">
+        <div class="role-chip">🎓 Estudiante</div>
+        <div class="role-chip">📘 Docente</div>
+        <div class="role-chip">🏫 Administrativo</div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: tarjeta blanca con el formulario de login -->
+    <div class="login-card">
+      <!-- Pestañas de rol. data-role identifica cada una para el JS -->
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-role="estudiante">Estudiante</button>
+        <button class="tab" data-role="docente">Docente</button>
+        <button class="tab" data-role="admin">Administrativo</button>
+      </div>
+      <form id="formularioIngreso">
+        <div class="field">
+          <!-- etiquetaId y campoId son actualizados por JS según el rol elegido -->
+          <label id="etiquetaId" for="campoId">Código de estudiante</label>
+          <input id="campoId" type="text" placeholder="Ej: LS-2026-0348" required>
+        </div>
+        <div class="field">
+          <label for="campoContrasena">Contraseña</label>
+          <input id="campoContrasena" type="password" placeholder="••••••••" required>
+        </div>
+        <div class="login-row">
+          <label style="display:flex; align-items:center; gap:6px; font-weight:600;"><input type="checkbox" style="width:auto;"> Recordarme</label>
+          <a href="#">¿Olvidaste tu contraseña?</a>
+        </div>
+        <!-- nombreRol muestra el rol activo dentro del texto del botón -->
+        <button type="submit" class="btn btn-primary btn-full">Ingresar como <span id="nombreRol">estudiante</span></button>
+        <p class="login-note">Esta es una demostración visual: al ingresar verás el panel de ejemplo con datos ficticios.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PANEL DEMO ============ -->
+<section class="section section-alt" id="panel">
+  <div class="container">
+    <div class="section-head">
+      <span class="tag">Vista previa funcional</span>
+      <h2>Así se ve el panel por dentro</h2>
+      <p>Ejemplo interactivo con datos de muestra — cambia de sección en la barra lateral. Las notas y el promedio se calculan en vivo.</p>
+    </div>
+
+    <div class="panel-wrap">
+      <div class="panel-top">
+        <div class="who"><div class="avatar">MG</div> María Gómez · 9°B · Estudiante</div>
+        <div style="font-size:13px; opacity:.85;">Periodo académico: <strong>III · 2026</strong></div>
+      </div>
+      <div class="panel-body">
+        <!-- Menú lateral: data-view indica qué vista debe activarse al hacer clic.
+             El JS (script.js, bloque 2) usa este atributo para mostrar/ocultar
+             el .panel-view correspondiente (más abajo, data-panel="..."). -->
+        <div class="sidebar">
+          <button class="side-btn active" data-view="inicio">🏠 Inicio</button>
+          <button class="side-btn" data-view="notas">📝 Notas y promedio</button>
+          <button class="side-btn" data-view="matriculas">📋 Matrículas</button>
+          <button class="side-btn" data-view="pensiones">💳 Pensiones</button>
+          <button class="side-btn" data-view="directorio">👥 Directorio</button>
+        </div>
+
+        <div class="main-panel">
+
+          <!-- INICIO: vista visible por defecto (tiene la clase "active") -->
+          <div class="panel-view active" data-panel="inicio">
+            <h3>Resumen general</h3>
+            <p class="sub">Instituto La Salle · sede Ciénaga, Magdalena</p>
+            <div class="kpi-row">
+              <div class="kpi"><div class="n">1.240</div><div class="l">Estudiantes</div></div>
+              <div class="kpi"><div class="n">62</div><div class="l">Docentes</div></div>
+              <div class="kpi"><div class="n">4,3</div><div class="l">Promedio general</div></div>
+              <div class="kpi"><div class="n">96%</div><div class="l">Pensiones al día</div></div>
+            </div>
+            <table>
+              <thead><tr><th>Actividad reciente</th><th>Curso</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr><td>Publicación de notas — Matemáticas</td><td>9°B</td><td><span class="pill pill-verde">Completo</span></td></tr>
+                <tr><td>Pago de pensión — Octubre</td><td>—</td><td><span class="pill pill-dorado">Pendiente</span></td></tr>
+                <tr><td>Matrícula 2027 — Primaria</td><td>Grado 5°</td><td><span class="pill pill-verde">Abierta</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- NOTAS: la tabla nace vacía (<tbody> sin filas); el JS
+               (script.js, bloque 3 - función renderizarNotas) la llena con
+               los datos del arreglo "asignaturas" y recalcula el promedio
+               cada vez que el usuario edita un input de nota. -->
+          <div class="panel-view" data-panel="notas">
+            <h3>Notas por asignatura</h3>
+            <p class="sub">Escala institucional 1.0 – 5.0 · Aprueba con 3.0 o más. Edita una nota y el promedio se actualiza solo.</p>
+            <table id="tablaNotas">
+              <thead><tr><th>Asignatura</th><th>Corte 1</th><th>Corte 2</th><th>Corte 3</th><th>Definitiva</th><th>Estado</th></tr></thead>
+              <tbody>
+                <!-- Filas generadas dinámicamente por JS (ver renderizarNotas en js/script.js) -->
+              </tbody>
+            </table>
+            <div class="kpi-row" style="margin-top:24px; grid-template-columns:repeat(2,1fr); max-width:420px;">
+              <div class="kpi"><div class="n" id="promedioGeneral">–</div><div class="l">Promedio del periodo</div></div>
+              <div class="kpi"><div class="n" id="estadoPromedio">–</div><div class="l">Estado académico</div></div>
+            </div>
+          </div>
+
+          <!-- MATRICULAS: el <select> de grado y el buscador de texto son
+               leídos por la función renderizarMatriculas() en js/script.js,
+               que filtra el arreglo "matriculas" y repinta el <tbody>. -->
+          <div class="panel-view" data-panel="matriculas">
+            <h3>Matrículas</h3>
+            <p class="sub">Primaria (1° a 5°) y Secundaria (6° a 11°) — año lectivo 2027.</p>
+            <div class="toolbar">
+              <select id="filtroGrado">
+                <option value="">Todos los grados</option>
+                <option>Transición</option><option>1°</option><option>2°</option><option>3°</option><option>4°</option><option>5°</option>
+                <option>6°</option><option>7°</option><option>8°</option><option>9°</option><option>10°</option><option>11°</option>
+              </select>
+              <input type="text" id="buscarEstudiante" placeholder="Buscar estudiante...">
+            </div>
+            <table id="tablaMatriculas">
+              <thead><tr><th>Estudiante</th><th>Grado</th><th>Jornada</th><th>Estado matrícula</th></tr></thead>
+              <tbody><!-- Filas generadas dinámicamente por JS (ver renderizarMatriculas) --></tbody>
+            </table>
+          </div>
+
+          <!-- PENSIONES: vista con datos fijos de ejemplo (sin lógica JS
+               asociada); las barras de progreso son solo un <div> con
+               un ancho en % definido directamente en el HTML. -->
+          <div class="panel-view" data-panel="pensiones">
+            <h3>Pensiones</h3>
+            <p class="sub">Estado de cuenta del año lectivo, mes a mes.</p>
+            <div class="fin-cards">
+              <div class="fin-card">
+                <h4>Pensión mensual</h4>
+                <p class="m">8 de 10 cuotas pagadas</p>
+                <div class="bar-bg"><div class="bar-fill" style="width:80%"></div></div>
+                <span class="pill pill-dorado">2 cuotas pendientes</span>
+              </div>
+              <div class="fin-card">
+                <h4>Matrícula 2026</h4>
+                <p class="m">Pagada en su totalidad</p>
+                <div class="bar-bg"><div class="bar-fill" style="width:100%"></div></div>
+                <span class="pill pill-verde">Al día</span>
+              </div>
+            </div>
+            <table style="margin-top:22px;">
+              <thead><tr><th>Mes</th><th>Valor</th><th>Estado</th></tr></thead>
+              <tbody>
+                <tr><td>Agosto</td><td class="mono">$185.000</td><td><span class="pill pill-verde">Pagado</span></td></tr>
+                <tr><td>Septiembre</td><td class="mono">$185.000</td><td><span class="pill pill-rojo">Vencido</span></td></tr>
+                <tr><td>Octubre</td><td class="mono">$185.000</td><td><span class="pill pill-dorado">Pendiente</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- DIRECTORIO: el <select> de área es leído por renderizarDocentes()
+               en js/script.js, que filtra el arreglo "docentes". -->
+          <div class="panel-view" data-panel="directorio">
+            <h3>Directorio de docentes</h3>
+            <p class="sub">Filtra por área para encontrar al docente encargado de cada asignatura.</p>
+            <div class="toolbar">
+              <select id="filtroArea">
+                <option value="">Todas las áreas</option>
+                <option>Matemáticas</option><option>Ciencias</option><option>Humanidades</option><option>Tecnología</option><option>Ética y valores</option>
+              </select>
+            </div>
+            <table id="tablaDocentes">
+              <thead><tr><th>Docente</th><th>Área</th><th>Cursos a cargo</th></tr></thead>
+              <tbody><!-- Filas generadas dinámicamente por JS (ver renderizarDocentes) --></tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============
+     Pie de página con marca, enlaces rápidos a las secciones internas
+     y datos de contacto de la institución.
+-->
+<footer id="contacto">
+  <div class="container">
+    <svg class="divider" viewBox="0 0 1200 46" preserveAspectRatio="none"><path d="M0,46 L0,30 L150,10 L300,34 L460,6 L620,28 L800,8 L980,32 L1200,14 L1200,46Z" fill="rgba(255,255,255,.06)"/></svg>
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg class="brand-crest" width="40" height="40" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#fff"/><path d="M2 50a48 48 0 0 1 96 0z" fill="url(#g2)"/><circle cx="60" cy="38" r="12" fill="#F4C430"/><defs><linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E3192"/><stop offset="1" stop-color="#1FA774"/></linearGradient></defs></svg>
+          <span class="name">Instituto La Salle</span>
+        </div>
+        <p style="max-width:280px; font-size:14px; line-height:1.6; color:rgba(255,255,255,.65);">Institución educativa de básica primaria y secundaria en Ciénaga, Magdalena. Dios, Ciencia y Virtud.</p>
+      </div>
+      <div>
+        <h5>Comunidad</h5>
+        <ul><li><a href="#acceso">Ingreso estudiantes</a></li><li><a href="#acceso">Ingreso docentes</a></li><li><a href="#acceso">Ingreso administrativo</a></li></ul>
+      </div>
+      <div>
+        <h5>Gestión</h5>
+        <ul><li><a href="#panel">Notas y boletines</a></li><li><a href="#panel">Matrículas</a></li><li><a href="#panel">Pensiones</a></li></ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul><li>Ciénaga, Magdalena, Colombia</li><li>secretaria@instlasalle.edu.co</li><li>(605) 000 0000</li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Instituto La Salle — Ciénaga, Magdalena. Todos los derechos reservados.</div>
+  </div>
+</footer>
+
+<!-- Toda la interactividad del sitio vive en este archivo separado -->
+<script src="js/script.js"></script>
+</body>
+</html>
